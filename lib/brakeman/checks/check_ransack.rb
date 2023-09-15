@@ -22,15 +22,16 @@ class Brakeman::CheckRansack < Brakeman::BaseCheck
 
       if input = has_immediate_user_input?(arg)
         confidence = :high
-        message = msg("Unrestricted search using ", msg_code('ransack'), " library called with ", msg_input(input), '. Limit using ', msg_code('ransackable_attributes'), ' and ', msg_code('ransackable_associations'))
+        message = msg('Unrestricted search using ', msg_code('ransack'), ' library called with ', msg_input(input), '. Limit search by defining ', msg_code('ransackable_attributes'), ' and ', msg_code('ransackable_associations'), ' methods in class or upgrade Ransack to version 4.0.0 or newer')
 
-        warn :result => result,
-          :warning_type => "Missing Authorization",
-          :warning_code => :ransack_search,
-          :message => message,
-          :user_input => input,
-          :confidence => confidence,
-          :cwe_id => [502]
+        warn result: result,
+          warning_type: 'Missing Authorization',
+          warning_code: :ransack_search,
+          message: message,
+          user_input: input,
+          confidence: confidence,
+          cwe_id: [502],
+          link: 'https://positive.security/blog/ransack-data-exfiltration'
       end
     end
   end

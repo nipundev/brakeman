@@ -16,7 +16,7 @@ class Rails7Tests < Minitest::Test
       :controller => 0,
       :model => 0,
       :template => 0,
-      :warning => 23
+      :warning => 24
     }
   end
 
